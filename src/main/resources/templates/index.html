@@ -28,7 +28,8 @@
     <table class="user-table">
         <thead>
         <tr>
-            <th>ID No.</th>
+            <th>SL No.</th>
+            <th>ID</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
@@ -37,7 +38,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${users}">
+        <tr th:each="user, index : ${users}">
+            <td th:text="${index.index + 1}"></td>
             <td th:text="${user.id}"></td>
             <td th:text="${user.name}"></td>
             <td th:text="${user.email}"></td>
