@@ -24,6 +24,6 @@ public interface UserMapper {
     // Delete
     void deleteUser(@Param("id") Long id);
 
-    // Check if email exists (unique validation এর জন্য)
+    // Check if email exists (for unique validation)
     int countByEmail(@Param("email") String email);
 }
