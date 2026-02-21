@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.revo.mybatis.mapper.UserMapper">
+
+    <!-- Result Map -->
+    <resultMap id="userResultMap" type="com.revo.mybatis.model.User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="address" column="address"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <!-- Insert User -->
+    <insert id="insertUser" parameterType="com.revo.mybatis.model.User"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO users (name, email, phone, address)
+        VALUES (#{name}, #{email}, #{phone}, #{address})
+    </insert>
+
+    <!-- Select All Users -->
+    <select id="findAllUsers" resultMap="userResultMap">
+        SELECT * FROM users ORDER BY id DESC
+    </select>
+
+    <!-- Select User by ID -->
+    <select id="findUserById" resultMap="userResultMap">
+        SELECT * FROM users WHERE id = #{id}
+    </select>
+
+    <!-- Update User -->
+    <update id="updateUser" parameterType="com.revo.mybatis.model.User">
+        UPDATE users
+        SET name = #{name},
+            email = #{email},
+            phone = #{phone},
+            address = #{address}
+        WHERE id = #{id}
+    </update>
+
+    <!-- Delete User -->
+    <delete id="deleteUser">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
+
+    <!-- Count by Email -->
+    <select id="countByEmail" resultType="int">
+        SELECT COUNT(*) FROM users WHERE email = #{email}
+    </select>
+
+</mapper>
