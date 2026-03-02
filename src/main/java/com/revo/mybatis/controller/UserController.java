@@ -15,21 +15,18 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // রুট রিডিরেক্ট - এখন আলাদাভাবে হ্যান্ডেল করতে হবে
     @GetMapping("/home")
     public String home(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "index";
     }
 
-    // নতুন ইউজার ফর্ম
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("user", new User());
         return "add-user";
     }
 
-    // ইউজার সেভ
     @PostMapping("/save")
     public String saveUser(@ModelAttribute User user,
                            RedirectAttributes redirectAttributes) {
@@ -50,7 +47,6 @@ public class UserController {
         return "redirect:/users/home";
     }
 
-    // ইউজার এডিট ফর্ম
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         User user = userService.getUserById(id);
@@ -61,7 +57,6 @@ public class UserController {
         return "redirect:/users/home";
     }
 
-    // ইউজার আপডেট
     @PostMapping("/update")
     public String updateUser(@ModelAttribute User user,
                              RedirectAttributes redirectAttributes) {
@@ -76,7 +71,6 @@ public class UserController {
         return "redirect:/users/home";
     }
 
-    // ইউজার ডিলিট
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable Long id,
                              RedirectAttributes redirectAttributes) {

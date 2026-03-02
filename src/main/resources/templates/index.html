@@ -53,7 +53,7 @@
                    onclick="return confirm('Are you Confirm?')">Delete</a>
             </td>
         </tr>
-        <tr th:if="${users.empty}">
+        <tr th:if="${users == null or users.isEmpty()}">
             <td colspan="6" class="no-data">No User Found!</td>
         </tr>
         </tbody>
